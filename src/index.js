@@ -1,8 +1,8 @@
-import express from "express";
-import cors from "cors";
-import bodyParser from "body-parser";
-import { connectDB } from "./config/data-source";
-import invitacionRoutes from "./routes";
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const { connectDB } = require("./config/data-source");
+const invitacionRoutes = require("./routes/invitacionRoutes");
 
 const app = express();
 const port = process.env.PORT || 5000;

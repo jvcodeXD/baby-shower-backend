@@ -1,5 +1,5 @@
-import { Router } from "express";
-import invitacionRoutes from "./invitacion.route";
+const { Router } = require("express");
+const invitacionRoutes = require("./invitacionRoutes");
 
 const router = Router();
 
@@ -9,4 +9,4 @@ router.use("/estado", (req, res) => {
 
 router.use("/invitacion", invitacionRoutes);
 
-export default router;
+module.exports = router;

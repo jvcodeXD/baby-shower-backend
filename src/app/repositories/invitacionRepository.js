@@ -1,10 +1,7 @@
-import { AppDataSource } from "../../config";
-import { Invitacion } from "../entities";
-import { Repository } from "typeorm";
+const { AppDataSource } = require("../../config/data-source");
+const { Invitacion } = require("../entities/invitacionEntity");
 
-export class InvitacionRepository {
-  private repo: Repository<Invitacion>;
-
+class InvitacionRepository {
   constructor() {
     this.repo = AppDataSource.getRepository(Invitacion);
   }
@@ -13,16 +10,18 @@ export class InvitacionRepository {
     return this.repo.find();
   }
 
-  async getById(id: string) {
+  async getById(id) {
     return this.repo.findOneBy({ id });
   }
 
-  async create(nombre: string, hora: string) {
+  async create(nombre, hora) {
     const invitacion = this.repo.create({ nombre, hora });
     return this.repo.save(invitacion);
   }
 
-  async delete(id: string) {
+  async delete(id) {
     return this.repo.delete({ id });
   }
 }
+
+module.exports = { InvitacionRepository };

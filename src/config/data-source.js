@@ -1,9 +1,9 @@
-import { DataSource } from "typeorm";
-import "dotenv/config"; // Cargar variables de entorno
+const { DataSource } = require("typeorm");
+require("dotenv").config(); // Cargar variables de entorno
 
 const isHeroku = !!process.env.DATABASE_URL; // Detectar si estamos en Heroku
 
-export const AppDataSource = new DataSource({
+const AppDataSource = new DataSource({
   type: "postgres",
   url: process.env.DATABASE_URL || "",
   host: process.env.POSTGRES_HOST,
@@ -18,7 +18,7 @@ export const AppDataSource = new DataSource({
   migrations: ["src/migrations"],
 });
 
-export const connectDB = async () => {
+const connectDB = async () => {
   try {
     await AppDataSource.initialize();
     console.log("📦 Base de datos conectada exitosamente");
@@ -26,3 +26,5 @@ export const connectDB = async () => {
     console.error("❌ Error conectando la base de datos:", error);
   }
 };
+
+module.exports = { AppDataSource, connectDB };
