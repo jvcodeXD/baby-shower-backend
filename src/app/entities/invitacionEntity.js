@@ -10,11 +10,11 @@ const Invitacion = new EntitySchema({
       generated: "uuid",
     },
     nombre: {
-      type: "varchar",
+      type: "text",
       nullable: false,
     },
     hora: {
-      type: "varchar",
+      type: "text",
       nullable: false,
     },
   },
